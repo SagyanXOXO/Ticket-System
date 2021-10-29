@@ -180,11 +180,12 @@ class TicketView(View):
         else:
             context = {'ticket' : ticket}
 
+        return render(request, 'ticket.html', context)
+
     @method_decorator(login_required)        
     def dispatch(self, *args, **kwargs):
-        super().dispatch(*args, **kwargs)        
-
-        return render(request, 'ticket.html', context)                                  
+        return super().dispatch(*args, **kwargs)        
+                                
 
 
 
