@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Ticket System
+{% endblock %}
+
+{% block extra_head %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+    <div class = 'ticket-div'>
+        <h2>Ticket #{{ticket.id}}</h2>
+
+        <div class = 'ticket-info col'>
+            <div class = 'my-row'>
+                <p><b>Subject : </b></p>
+                <p>&nbsp;{{ticket.subject}}</p>
+            </div>
+            <div class = 'my-row'>
+                <p><b>Description:</b></p>
+                <p>&nbsp;{{ticket.description|linebreaksbr}}</p>
+            </div>
+            <div class = 'my-row'>
+                <p><b>Status : </b></p>
+                <p>&nbsp;{{ticket.status}}</p>
+            </div>
+            {% if ticket.progress %}
+            <div class = 'my-row'>
+                <p><b>Progress : </b></p>
+                <p>&nbsp;{{ticket.progress}}%</p>
+            </div>
+            {% endif %}
+            <div class = 'my-row'>
+                <p><b>Created : </b></p>
+                <p>&nbsp;{{ticket.created_on}}</p>
+            </div>
+            {% if ticket.remark %}
+            <div class = 'my-row'>
+                <p><b>Closing remark : </b></p>
+                <p>&nbsp;{{ticket.remark}}</p>
+            </div>
+            {% endif %}
+
+            <h2>Comments</h2>
+            {% for c in ticket.comment_set.all %}
+            <div class = 'comment-div'>
+                <p>{{c.comment}}</p>
+                <p>{{c.timestamp}}</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+<style>
+    .my-row{
+        display: flex;
+        flex-direction: row;
+    }
+
+    form{
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .submit{
+        margin-top: 20px;
+    }
+
+    form input{
+        width: 100%;
+    }
+</style>
+
+<script>
+</script>
+{% endblock %}

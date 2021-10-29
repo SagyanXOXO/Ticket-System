@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Ticket System
+{% endblock %}
+
+{% block extra_head %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+    <div class = 'ticket-div'>
+        {% for t in tickets %}
+        <div class = 'ticket-item'>
+            <a href = "{% url 'ticket' t.id %}">{{t.subject}}</a>
+            <p>{{t.description}}</p>
+            <p>{{t.created_on}}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+
+<style>
+    .ticket-item{
+        width: 100%;
+        border-bottom:1px solid rgb(95, 95, 95);
+    }
+
+    .ticket-item a{
+        color: black;
+        text-decoration: none;
+        font-size: 18px;
+        color: rgb(15, 15, 190);
+    }
+
+    .ticket-item p{
+        font-size: 16px;
+        padding:0;
+        margin-top: 7px;
+    }
+
+    form{
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .submit{
+        margin-top: 20px;
+    }
+
+    form input{
+        width: 100%;
+    }
+</style>
+
+<script>
+</script>
+{% endblock %}
