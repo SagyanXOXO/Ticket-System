@@ -70,7 +70,9 @@ class LoginView(View):
                 login(request, user)
                 return redirect('/')
             else:
-                return render(request, 'login.html', {'message' : 'Invalid credentials'})      
+                return redirect('/login/')    
+        else:
+            return redirect('/login/')    
 
 
 """
